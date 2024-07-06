@@ -55,7 +55,7 @@ def encontrar_camino(mapa, punt_partida, destino):
 
         # Si no, se exploran los vecinos del nodo actual.
 
-        # Para cada vecino, se calcula un g_score tentativo.
+        # Para cada vecino, se calcula un puntaje_g tentativo.
         for vecinos in obtener_vecinos(mapa, pos_actual):
             punt_tentativo_g = puntaje_g[pos_actual] + 1  # Asumimos costo de 1 para moverse
 
@@ -95,7 +95,7 @@ while True:
     
     try:
         
-        print("Ingrese las dimensiones del mapa")
+        print("Ingrese las dimensiones del mapa: MINIMO 5X5 | MAXIMO 30X30")
 
         #Solicitar al usuarios que ingrese el numero de filas
         filas = int(input("Numero de Filas: "))
@@ -103,11 +103,12 @@ while True:
         #Numero de columnas
         columnas = int(input("Numero de Columnas: "))
 
-        if filas > 0 and columnas > 0:
+        if filas >= 5 and columnas >= 5 and filas <= 30 and columnas <= 30:
             break
+
         else:
             print()
-            print("Error: (┬┬﹏┬┬) Solo se aceptan numeros positivos. Intentelo nuevamente")
+            print("Error: supera el MINOMO o MAXIMO establecido ༼ つ ◕_◕ ༽つ. Intentelo nuevamente ")
             print()
        
     except ValueError:
@@ -142,7 +143,7 @@ while True:
              agregar_obstaculo(mapa, x, y)
         else:
              print()
-             print("Cordenadas fuera de rando o ya fue elegido como obstaculo (⊙_⊙;)")
+             print("Cordenadas fuera de rango o ya fue elegido como obstaculo (⊙_⊙;)")
              print()
 
     except ValueError:
@@ -171,7 +172,7 @@ while True:
              
         else:
             print()
-            print("Cordenadas fuera de rando o ya fue elegido como obstaculo (⊙_⊙;)")
+            print("Cordenadas fuera de rango o ya fue elegido como obstaculo (⊙_⊙;)")
 
     except ValueError:
         print()
@@ -188,13 +189,13 @@ while True:
         y_fin = int(input(f"Ingrese la cordenada y (de 0 a {columnas-1}): "))
 
         # Verificamos que las cordenadas esten dentro del rango y le pasamos los parametros a la funcion agregar_destino
-        if 0 <= x_fin < filas and 0 <= y_fin < columnas and mapa[x_fin, y_fin] != 1:
+        if 0 <= x_fin < filas and 0 <= y_fin < columnas and mapa[x_fin, y_fin] != 1 and mapa[x_inicio, y_inicio] != mapa[x_fin, y_fin]:
             agregar_destino(mapa, x_fin, y_fin)
             break
              
         else:
             print()
-            print("Cordenadas fuera de rando o ya fue elegido como obstaculo (⊙_⊙;)")
+            print("Cordenadas fuera de rango o ya fue seleccionado (⊙_⊙;)")
             print()
 
     except ValueError:
